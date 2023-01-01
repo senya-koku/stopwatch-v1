@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Stop Watch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />
+</head>
+<body>
+
+<div id="app" class="ui text container">
+    <div class="allView ">
+    <div class="uiHeader mb-20">
+        <h1>Stop Watch</h1> 
+        <div class="marker"></div>
+    </div>
+    <div class="column">
+        <p class="times">
+            Time:
+            {{ hours }} :
+            {{ minutes | zeroPad }} :
+            {{ seconds | zeroPad }} <!--:-->
+            <!--{{ milliSeconds | zeroPad(2) }}-->
+        </p>
+        <button class="ui secondary button" @click="startTimer" :disabled="isRunning">START</button>
+        <button class="ui button" @click="pushTime" :disabled="!isRunning">LAP</button>
+        <button class="ui button" @click="stopTimer" :disabled="!isRunning">STOP</button>
+        <button class="ui basic button" @click="clearAll">CLEAR</button>
+        <ul class="ui bulleted list" v-if="times.length">
+        <li class="item" v-for="item in times">
+            {{ item.hours  }} :
+            {{ item.minutes | zeroPad }} :
+            {{ item.seconds | zeroPad }} <!--:-->
+            <!--{{ item.milliSeconds | zeroPad(2) }} -->
+        </li>
+        </ul>
+    </div>
+    <!-- /.column -->
+    </div>
+    <!-- /.center aligned row -->
+</div>
+<!-- /.ui text container -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.js"></script>
+<script src="stopwatch.js"></script>
+</body>
+</html>
